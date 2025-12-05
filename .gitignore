@@ -1,0 +1,23 @@
+# MATLAB / Simulink
+*.asv
+*.mex*
+*.mdl.autosave
+*.slxc
+slprj/
+sccprj/
+*.autosave
+*.m~ 
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.bbl
+*.blg
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
