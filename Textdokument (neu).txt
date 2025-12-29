@@ -1,0 +1,55 @@
+function [x_out,u_ref,h_ref,t,count_new] = feed_forward(h0,hE,T,Trep,count)
+
+count_new = count+1;
+dT = 0.005;
+t = count_new*dT;
+
+if mod(floor(t/Trep), 2)
+    h0_traj = hE;
+    hE_traj = h0;
+else
+    h0_traj = h0;
+    hE_traj = hE;
+end
+    
+alpha1 = 0.000745736;
+alpha2 = 0.209195;
+alpha3 = 9.81;
+tau_omega = 1.255; 
+u_0 = -34.234; 
+k_omega = 96.295;
+
+% Calculate Trajectory
+x_ref = 0;
+xp_ref = 0;
+xpp_ref = 0;
+xppp_ref = 0;
+
+
+tau = rem(t, Trep);
+
+if tau > T
+    x_ref = hE_traj;
+else
+    a0 = h0_traj;
+    a1 = 0;
+    a2 = 0;
+    a3 = 10*(hE_traj-h0_traj)/T^3;
+    a4 = -15*(hE_traj-h0_traj)/T^4;
+    a5 = 6*(hE_traj-h0_traj)/T^5;
+    x_ref = a0 + a1*tau + a2*tau^2 + a3*tau^3 + a4*tau^4 + a5*tau^5;
+    xp_ref = 3*a3*tau^2 + 4*a4*tau^3 + 5*a5*tau^4;
+    xpp_ref = 6*a3*tau + 12*a4*tau^2 + 20*a5*tau^3;
+    xppp_ref = 6*a3 + 24*a4*tau + 60*a5*tau^2;
+    % Trajectory has to be implemented!
+end
+
+% Equations:
+omega = (sqrt(xpp_ref + alpha3) + alpha2*xp_ref) / alpha1; % equation for omega
+omega_p = ((xppp_ref / (2*sqrt(xpp_ref+alpha3)))+alpha2*xpp_ref) / alpha1; % equation for omega dot
+u = (tau_omega * omega_p + omega)/k_omega + u_0; % equation for u
+% yallah habibi
+h_ref = x_ref;
+u_ref = u; 
+x_out = [x_ref,xp_ref,xpp_ref,omega,omega_p]';
+end
