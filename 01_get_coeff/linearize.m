@@ -122,4 +122,4 @@ grid on;
 
 %% 7. OPEN TUNER (Optional)
 % Uncomment the line below to open the PID Tuner app manually
-% pidTuner(sys_lin, 'PID');
+pidTuner(sys_lin, 'PID');
