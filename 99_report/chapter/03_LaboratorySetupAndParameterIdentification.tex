@@ -1,0 +1,67 @@
+\chapter{Laboratory Setup and Parameter Identification}
+
+The laboratory setup consists of a hydraulic two-tank system including a water basin, a pump,
+two vertically arranged reservoirs, and pressure sensors for water level measurement. Water
+is pumped from the basin into the upper reservoir and flows sequentially into the lower
+reservoir before returning to the basin. The control input is the pump voltage, while the
+controlled output is the water level of the lower reservoir.
+
+The experimental system is interfaced via National Instruments hardware and operated using
+MATLAB/Simulink in external mode. This setup allows real-time data acquisition, controller
+implementation, and parameter identification under realistic operating conditions. Physical
+constraints such as maximum tank height and limited pump voltage must be respected throughout
+the experiment.
+
+\paragraph{Pump model identification}
+The pump generates the inlet mass flow to the upper reservoir and is driven by an input
+voltage. Based on the characteristic curve provided in the laboratory documentation, the pump
+is assumed to behave as a static linear system within the relevant operating range. Neglecting
+the nonlinear behaviour close to the origin, the relationship between pump input voltage
+$U_{\mathrm{in}}$ and mass flow $\dot{m}$ is approximated by
+\[
+    \dot{m} = K_{\mathrm{pump}} \left( U_{\mathrm{in}} - U_0 \right),
+\]
+where $K_{\mathrm{pump}}$ denotes the pump gain and $U_0$ represents the voltage offset. Both
+parameters are obtained by linear regression of the measured characteristic curve. This model
+is used both for simulation and for converting controller outputs into voltage signals during
+implementation.
+
+\paragraph{Pressure sensor model}
+Each reservoir is equipped with a pressure sensor measuring the hydrostatic pressure at the
+bottom of the tank. Since pressure is directly proportional to the water column height, the
+sensor output voltage provides an indirect measurement of the water level. The sensor
+characteristic is assumed to be linear and is described by
+\[
+    u_{\mathrm{out}} = k_h \, h + u_{\mathrm{off}},
+\]
+where $k_h$ is the sensor gain and $u_{\mathrm{off}}$ is an offset voltage. As only the water
+level of the lower reservoir is controlled, only this sensor is considered in the control
+loop.
+
+\paragraph{Sensor calibration}
+Accurate water level measurement requires calibration of the pressure sensor prior to control
+design. Calibration is performed by recording the sensor output voltage at several known water
+heights. Using these reference points, the gain and offset parameters are identified via
+linear regression. The calibrated model enables conversion of the measured voltage signal into
+a physical water height with sufficient accuracy for control purposes.
+
+\paragraph{Identification of hydraulic parameters}
+The hydraulic parameters governing the outflow of the reservoirs are summarized in the
+coefficient
+\[
+    a = \frac{A_{\mathrm{out}}}{A_t}
+    \sqrt{\frac{2g}{1+\zeta}},
+\]
+which combines outlet area, tank cross-sectional area, gravitational acceleration, and the
+pressure loss coefficient. While geometric parameters and fluid density are known, the
+effective pressure loss is identified experimentally. This is achieved by measuring the
+steady-state outflow behaviour for different water levels and fitting the resulting data to
+the theoretical flow model.
+
+\paragraph{Practical constraints}
+Several practical limitations influence system operation and controller design. The pump
+input voltage is limited to a maximum admissible range to prevent hardware damage. The water
+level in each reservoir is constrained between zero and the height of the emergency outlet,
+which defines the maximum usable operating point. These constraints are explicitly considered
+in simulations through saturation blocks and output limitations and must be respected during
+laboratory operation.
