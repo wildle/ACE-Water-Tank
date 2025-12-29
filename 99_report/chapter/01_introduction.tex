@@ -3,31 +3,23 @@
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.35\textwidth]{img/WaterTank.png}
-    \caption{Water Tank laboratory system}
+    \caption{Water Tank laboratory system \cite{ACE_WT_Lab}}
     \label{fig:wt_system}
 \end{figure}
 
-This laboratory experiment addresses the modeling and control of a nonlinear hydraulic two-tank system. 
-The setup consists of a pump that transfers water from a basin into an upper reservoir, from which the 
-water flows into a lower reservoir before returning to the basin. The system dynamics are governed by 
-mass conservation and nonlinear flow relations caused by gravity-driven outflows.
+This laboratory experiment investigates the control of a nonlinear hydraulic two-tank system.
+The objective is to regulate the water level of the lower reservoir by controlling the pump
+input. MATLAB and Simulink are used for modeling, controller design and simulation, as well as
+for the implementation of the control algorithm on the laboratory hardware via a National
+Instruments interface.
 
-The objective of the laboratory is to regulate the water level of the lower reservoir by controlling 
-the pump input. To achieve this, a nonlinear state-space model of the system is derived and linearized 
-around a suitable operating point. Based on the linearized model, a PID controller is designed and 
-validated in simulation. The nonlinear plant model is used to assess closed-loop performance under 
-practical constraints such as actuator saturation, measurement noise and physical limitations of 
-the tank levels. In addition, a flatness-based feed-forward control approach is investigated to improve 
-reference tracking during trajectory transitions.
 
-MATLAB/Simulink is used as the primary environment for modeling, controller design and simulation, 
-serving as preparation for the subsequent implementation on real laboratory hardware.
 
 The report is structured as follows:
 \begin{itemize}
-    \item Chapter~2 summarizes the theoretical background, including system modeling and linearization.
-    \item Chapter~3 describes the laboratory setup and the parameter identification procedures.
-    \item Chapter~4 presents the simulation models and controller design.
-    \item Chapter~5 discusses the obtained results and their interpretation.
-    \item Chapter~6 concludes the report and highlights key findings.
+    \item Chapter~2 summarizes the theoretical background.
+    \item Chapter~3 describes the laboratory setup and parameter identification.
+    \item Chapter~4 presents the simulation models and control design.
+    \item Chapter~5 discusses the results.
+    \item Chapter~6 concludes the report.
 \end{itemize}

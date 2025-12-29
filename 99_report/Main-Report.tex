@@ -17,12 +17,18 @@ column-type  = one,                          % (one    | two)
 \usepackage{csquotes}
 \pgfplotsset{compat=1.18}
 
+% --- reduce reserved header/footer space ---
+\setlength{\footskip}{8mm}
+\setlength{\headsep}{6mm}
+\setlength{\headheight}{14pt}
+
+
 % For example, bibliography setting are added. Bibtex is the standard but if you prefer
 % there are other options on the market such as biber. Style has been chosen as IEEE but if 
 % are from another discipline, please feel free to change it.
 
-\bibliography{references.bib} % Here we add our file where we store our references.
-%\addbibresource{references.bib}  
+%\bibliography{references.bib} % Here we add our file where we store our references.
+\addbibresource{references.bib}  
 %\renewcommand*{\bibfont}{\normalsize}
 %      
 % ---------------------------------------------------------------------------------------------
@@ -52,7 +58,7 @@ column-type  = one,                          % (one    | two)
 \MakeTitlePage     
 
 \setlength{\parindent}{0pt}               % No indentation for paragraphs added by @wildle
-\setlength{\parskip}{0.5\baselineskip}    % Space between paragraphs added by @wildle
+\setlength{\parskip}{0.25\baselineskip}    % Space between paragraphs added by @wildle
 
 \TableOfContents           
 
