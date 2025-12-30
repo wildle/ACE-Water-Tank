@@ -1,8 +1,9 @@
 \chapter{Introduction}
+\enlargethispage{2\baselineskip}
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.35\textwidth]{img/WaterTank.png}
+    \includegraphics[width=0.40\textwidth]{img/WaterTank.png}
     \caption{Water Tank laboratory system}
     \label{fig:wt_system}
 \end{figure}
@@ -11,15 +12,15 @@ This laboratory experiment investigates the control of a nonlinear hydraulic two
 The objective is to regulate the water level of the lower reservoir by controlling the pump
 input. MATLAB and Simulink are used for modeling, controller design and simulation, as well as
 for the implementation of the control algorithm on the laboratory hardware via a National
-Instruments interface.
-
+Instruments interface. In addition to feedback control, a flatness-based feed-forward approach
+is considered to enable smooth reference trajectory tracking.
 
 
 The report is structured as follows:
 \begin{itemize}
-    \item Chapter~2 summarizes the theoretical background.
-    \item Chapter~3 describes the laboratory setup and parameter identification.
-    \item Chapter~4 presents the simulation models and control design.
-    \item Chapter~5 discusses the results.
-    \item Chapter~6 concludes the report.
+    \item Chapter~\ref{chapter:TheoreticalBackground} summarizes the theoretical background.
+    \item Chapter~\ref{chapter:LaboratorySetupAndParameterIdentification} describes the laboratory setup and parameter identification.
+    \item Chapter~\ref{chapter:Simulations} presents the simulation models and control design.
+    \item Chapter~\ref{chapter:ResultsAndInterpretation} discusses the results.
+    \item Chapter~\ref{chapter:Conclusion} concludes the report.
 \end{itemize}

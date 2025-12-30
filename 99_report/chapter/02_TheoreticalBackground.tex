@@ -1,9 +1,10 @@
 \chapter{Theoretical Background}
+\label{chapter:TheoreticalBackground}
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.40\textwidth]{img/WaterTank_schematic.png}
-    \caption{Schematic representation of the two-tank hydraulic system \cite{ACE_WT_Lab}}
+    \caption{Schematic representation of the two-tank hydraulic system (source: \cite{ACE_WT_Lab})}
     \label{fig:wt_physical}
 \end{figure}
 
@@ -18,10 +19,13 @@ state-space form as
 \dot{x}(t) = f(x(t),u(t)), \qquad
 x = \begin{bmatrix} h_1 & h_2 \end{bmatrix}^\top,
 \end{equation}
-with the pump mass flow as control input and the water level of the lower reservoir as system
-output.
+where the control input $u(t)$ represents the pump mass flow. The controlled output is defined
+as the water level of the lower reservoir,
+\[
+y(t) = h_2(t).
+\]
 
 For controller design, the nonlinear model is linearized around a steady operating point,
-yielding a local linear time-invariant approximation. This model is used for PID controller
-design. In addition, a flatness-based feed-forward approach is considered, exploiting the fact
-that the lower reservoir level constitutes a flat output of the system.
+resulting in a local linear time-invariant approximation. In addition to feedback control,
+a flatness-based feed-forward approach is considered, exploiting the fact that the water level
+of the lower reservoir constitutes a flat output of the nonlinear system.
