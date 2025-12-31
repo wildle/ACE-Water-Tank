@@ -25,8 +25,54 @@ as the water level of the lower reservoir,
 \[
 y(t) = h_2(t).
 \]
-
+\section{State linearization}
 For controller design, the nonlinear model is linearized around a steady operating point,
 resulting in a local linear time-invariant approximation. In addition to feedback control,
 a flatness-based feed-forward approach is considered, exploiting the fact that the water level
 of the lower reservoir constitutes a flat output of the nonlinear system.
+
+\begin{align}
+	\dot{x}_{1} &= -a_1\sqrt{x_1} + \frac{1}{\rho A_t}u \\
+	\dot{x}_{2} &= a_1\sqrt{x_1} - a_2\sqrt{x_2}
+\end{align}
+
+where the parameters are defined as $a_{i}=\frac{A_{out,i}}{A_{t}}\sqrt{\frac{2g}{1+\zeta_{i}}}$ for $i=1,2$.
+
+The nonlinear state-space model is linearized at an operating point determined by the desired water level in the second reservoir. As per the task description, this is chosen as $\bar{x}_2 = \qty{5}{\cm}$. The equilibrium conditions $\dot{x} = 0$ yield:
+
+\begin{equation}
+	\bar{x}_{2} = \qty{0.05}{\meter}, \quad \bar{x}_{1} = \left(\frac{a_2}{a_1}\right)^2 \bar{x}_2, \quad \bar{u} = \rho A_t a_1 \sqrt{\bar{x}_1}
+\end{equation}
+
+The partial derivatives of the non-linear terms $f(x,u)$ evaluated at this operating point are:
+
+\begin{align}
+	\frac{\partial f_1}{\partial x_1} \bigg|_{\bar{x}} &= -\frac{a_1}{2\sqrt{\bar{x}_1}} \\
+	\frac{\partial f_2}{\partial x_1} \bigg|_{\bar{x}} &= \frac{a_1}{2\sqrt{\bar{x}_1}} \\
+	\frac{\partial f_2}{\partial x_2} \bigg|_{\bar{x}} &= -\frac{a_2}{2\sqrt{\bar{x}_2}}
+\end{align}
+
+Introducing deviations $\Delta \mathbf{x} = \mathbf{x} - \bar{\mathbf{x}}$ and $\Delta u = u - \bar{u}$, the linearized system $\Delta \dot{\mathbf{x}} = \mathbf{A}\Delta \mathbf{x} + \mathbf{B}\Delta u$ is given by:
+
+\begin{equation}
+	\begin{bmatrix}
+		\Delta \dot{x}_1 \\
+		\Delta \dot{x}_2
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		-\frac{a_1}{2\sqrt{\bar{x}_1}} & 0 \\
+		\frac{a_1}{2\sqrt{\bar{x}_1}} & -\frac{a_2}{2\sqrt{\bar{x}_2}}
+	\end{bmatrix}
+	\begin{bmatrix}
+		\Delta x_1 \\
+		\Delta x_2
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+		\frac{1}{\rho A_t} \\
+		0
+	\end{bmatrix}
+	\Delta u
+\end{equation}
+
