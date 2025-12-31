@@ -18,7 +18,10 @@ Assuming incompressible fluid behaviour, the nonlinear system dynamics can be ex
 state-space form as
 \begin{equation}
 \dot{x}(t) = f(x(t),u(t)), \qquad
-x = \begin{bmatrix} h_1 & h_2 \end{bmatrix}^\top,
+x = \begin{bmatrix} 
+		h_1 \\
+		h_2 
+	\end{bmatrix}
 \end{equation}
 where the control input $u(t)$ represents the pump mass flow. The controlled output is defined
 as the water level of the lower reservoir,
@@ -37,6 +40,7 @@ of the lower reservoir constitutes a flat output of the nonlinear system.
 \end{align}
 
 where the parameters are defined as $a_{i}=\frac{A_{out,i}}{A_{t}}\sqrt{\frac{2g}{1+\zeta_{i}}}$ for $i=1,2$.
+
 
 The nonlinear state-space model is linearized at an operating point determined by the desired water level in the second reservoir. As per the task description, this is chosen as $\bar{x}_2 = \qty{5}{\cm}$. The equilibrium conditions $\dot{x} = 0$ yield:
 

@@ -1,5 +1,5 @@
 \chapter{Introduction}
-\enlargethispage{3.5\baselineskip}
+\enlargethispage{6\baselineskip}
 
 \begin{figure}[H]
     \centering
@@ -8,19 +8,35 @@
     \label{fig:wt_system}
 \end{figure}
 
-This laboratory experiment investigates the control of a nonlinear hydraulic two-tank system.
-The objective is to regulate the water level of the lower reservoir by controlling the pump
-input. MATLAB and Simulink are used for modeling, controller design and simulation, as well as
-for the implementation of the control algorithm on the laboratory hardware via a National
-Instruments interface. In addition to feedback control, a flatness-based feed-forward approach
-is considered to enable smooth reference trajectory tracking.
+%This laboratory experiment investigates the control of a nonlinear 
+%hydraulic two-tank system. The objective is to regulate the water 
+%level of the lower reservoir by controlling the pump input. 
+
+%MATLAB and Simulink are used for modeling, controller design and 
+%simulation, as well as for the implementation of the control algorithm on the 
+%laboratory hardware via a National Instruments interface. In addition 
+%to feedback control, a flatness-based feed-forward approach is 
+%considered to enable smooth reference trajectory tracking.
+
+This laboratory investigates the control of a nonlinear hydraulic 
+two-tank system. Water is pumped from a basin into the upper reservoir 
+and flows into the lower reservoir due to gravity, where the
+water level is measured and regulated by controlling the pump input.
+
+The task focuses on modelling the nonlinear system dynamics, linearising the model around a
+suitable operating point and designing a control strategy capable of regulating the water level and
+enabling smooth transitions using trajectory planning and a flatness-based feed-forward approach.
+MATLAB and Simulink are used for modelling, simulation and controller design, as well as for the
+implementation of the control algorithm on the laboratory hardware via a National Instruments
+interface.
+
 
 
 The report is structured as follows:
 \begin{itemize}
-    \item Chapter~\ref{chapter:TheoreticalBackground} summarizes the theoretical background.
-    \item Chapter~\ref{chapter:LaboratorySetupAndParameterIdentification} describes the laboratory setup and parameter identification.
-    \item Chapter~\ref{chapter:Simulations} presents the simulation models and control design.
+    \item Chapter~\ref{chapter:TheoreticalBackground} summarises the theoretical background.
+    \item Chapter~\ref{chapter:LaboratorySetupAndParameterIdentification} outlines the laboratory setup and parameter identification.
+    \item Chapter~\ref{chapter:Simulations} presents the simulation models and control structure.
     \item Chapter~\ref{chapter:ResultsAndInterpretation} discusses the results.
     \item Chapter~\ref{chapter:Conclusion} concludes the report.
 \end{itemize}
