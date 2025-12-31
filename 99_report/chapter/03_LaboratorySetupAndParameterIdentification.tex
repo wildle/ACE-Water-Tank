@@ -12,9 +12,9 @@ approximated as a static linear system:
 where the gain $K_{\mathrm{pump}}$ and the voltage offset $U_0$ are determined by linear
 regression of the diagram, given in the laboratory script \cite{ACE_WT_Lab}, depicted in figure \ref{fig:pumpcurve}.
 \begin{figure}[H]
-	\centering
+	\centering 
 	\includegraphics[height=0.4\textheight]{img/pump_curve.pdf}
-	\caption[Transition in the Simulation]{Transition from \qty{0.1}{\meter} to \qty{0.4}{\meter} using the Simulink-Simulation and the non-linear model of the system}
+	\caption[Diagram of the linear pump relationship]{Diagram of the linear pump relationship given the laboratory script  \cite{ACE_WT_Lab}}
 	\label{fig:pumpcurve}
 \end{figure}
 The linear regression of the pump diagram in \ref{fig:pumpcurve} returns following values for the corresponding parameters: $K_{\mathrm{pump}} = \qty{0.0167}{\kilogram\per\second\per\volt}$ and $U_0 = \qty{0.25}{\volt}$
@@ -51,7 +51,7 @@ corresponding gain and offset parameters using linear regression.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.4\textheight]{img/sensor2_calibration.pdf}
-	\caption[Transition in the Simulation]{Transition from \qty{0.1}{\meter} to \qty{0.4}{\meter} using the Simulink-Simulation and the non-linear model of the system}
+	\caption[Transition in the Simulation]{Diagram of the linear fit of the measurements to determine} using the Simulink-Simulation and the non-linear model of the system}
 	\label{fig:sensorcal}
 \end{figure}
 The linear regression of calibration of the sensor of the second water tank, which is depicted in diagram \ref{fig:sensorcal} returns following values for the corresponding parameters: $K_{\text{sens}} = \qty{0.1394}{\meter\per\volt}$ and $U_{0, \text{sens}} = \qty{2.0866}{\volt}$
