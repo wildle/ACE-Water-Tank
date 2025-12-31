@@ -1,12 +1,19 @@
 \chapter{Simulation}
-\label{chapter:Simulations}
+\enlargethispage{3.5\baselineskip}
 
-\begin{itemize}
-  \item Implementation of the nonlinear plant model in Simulink
-  \item Integration of pump and sensor models
-  \item Linearized model implementation for controller design
-  \item PID controller tuning using \texttt{pidTuner}
-  \item Inclusion of actuator saturation and output limitations
-  \item Noise modeling and optional output filtering
-  \item Implementation of flatness-based feed-forward control
-\end{itemize}
+!!! Text ändern !!!
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/blockschaltbildfull.png}
+	\caption[Schematic of the Simulink-Simulation]{Schematic of the Simulink-Simulation}
+	\label{fig:bsbf}
+\end{figure}
+The simulation-software constists of sections for the model, the control and the feed-forward. Figure \ref{fig:bsbf} displays the enitire simulation for the Ball-in-Tube-system in MATLAB-Simulink. The initial conditions for the integrator are chosen as a height of \qty{0.1}{\m}, velocity of \qty{0}{ms^{-1}} and a fan-speed of \qty{4200}{rpm}. In order to make the simulation more realistic, a noise was added to the system.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/blockschaltbildctrl.png}
+	\caption{Schematic representation of the Ball-in-Tube system}
+	\label{fig:bit_physical_1}
+\end{figure}
+The control-section consists of a PID-control, for which the values $K_{P} = 1, K_{I} = 0.1 \ \text{and} \ K_{D} = 1 $ are chosen. The saturation is added, so that the duty-cycle can never become smaller then \qty{0}{\%} and larger then \qty{100}{\%}. 

@@ -240,9 +240,9 @@ gemeinfrei.
 }
 
 \newcommand{\TableOfContents}{
-  \tableofcontents
-  \listoffigures
-  \listoftables
+  %\tableofcontents
+  %\listoffigures
+  %\listoftables
   % 
   \clearpage
   \pagenumbering{arabic}
@@ -465,8 +465,8 @@ autooneside  = false
 
 \newcommand{\TableOfContents}{
   \tableofcontents
-  \listoffigures
-  \listoftables
+  %\listoffigures
+  %\listoftables
   % 
   \clearpage
   \pagenumbering{arabic}
