@@ -28,7 +28,7 @@ the reservoir heights. $a_{1}$ can be calculated by:
 \end{equation}
 where $b$ is:
 \begin{equation}
-	b = \frac{1}{\rho A_t} = \frac{1}{\qty{1000}{kg/m^3} \times \qty{50e-4}{m^2}} = \qty{0.2}{m/kg}
+	b = \frac{1}{\rho A_t} = \frac{1}{\qty{1000}{kg/m^3} \times \qty{50e-4}{m^2}} = \qty{0.2}{\meter\per\kilogram}
 \end{equation}
 and $v_{\text{input}}$ and $h_{1}$ are vectors, therefore the mean has to be taken. Resulting in:
 \begin{equation}
@@ -46,12 +46,12 @@ where $h_{1}$ and $h_{2}$ are vectors, therefore the mean has to be taken. Resul
 \section{Sensor calibration}
 The water level in each reservoir is measured by a pressure sensor. Since hydrostatic pressure
 is proportional to the water column height, a linear sensor model is assumed. Calibration is
-performed by recording the sensor output voltage at known water heights and identifying the
+performed by recording the sensor output voltage at known water heights as depicted in figure \ref{fig:sensorcal} and identifying the
 corresponding gain and offset parameters using linear regression.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.4\textheight]{img/sensor2_calibration.pdf}
-	\caption[Transition in the Simulation]{Diagram of the linear fit of the measurements to determine} using the Simulink-Simulation and the non-linear model of the system}
+	\caption[Diagram to determine sensor gain and offset]{Diagram of the linear fit of the measurements to determine the sensor gain and offset}
 	\label{fig:sensorcal}
 \end{figure}
 The linear regression of calibration of the sensor of the second water tank, which is depicted in diagram \ref{fig:sensorcal} returns following values for the corresponding parameters: $K_{\text{sens}} = \qty{0.1394}{\meter\per\volt}$ and $U_{0, \text{sens}} = \qty{2.0866}{\volt}$
