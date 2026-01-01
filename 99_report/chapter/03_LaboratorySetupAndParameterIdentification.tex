@@ -2,75 +2,94 @@
 \label{chapter:LaboratorySetupAndParameterIdentification}
 \enlargethispage{3.5\baselineskip}
 
+The laboratory setup consists of a two-tank hydraulic system equipped with a pump and pressure
+sensors for water level measurement. Water is pumped from a basin into the upper reservoir,
+while gravity-driven flow connects the upper and lower reservoirs. The water level of the lower
+reservoir is used as the controlled output.
+
+Control and data acquisition are handled via National Instruments hardware. The system model
+and control structure are implemented in MATLAB and Simulink and deployed to the laboratory
+hardware using MATLAB Coder. Physical constraints such as pump voltage saturation and the
+maximum admissible reservoir heights impose strict bounds on system operation and must be
+considered during parameter identification and control design.
+
 \section{Parameter identification}
 
-\subsection{Pump parameter}
-The pump generates the inlet mass flow to the upper reservoir and is driven by an input
-voltage. Based on the characteristic curve provided in the laboratory script \cite{ACE_WT_Lab}, the pump is
-approximated as a static linear system:
+\subsection{Pump parameters}
+The pump provides the inlet mass flow to the upper reservoir and is driven by an input voltage.
+Based on the characteristic curve given in \cite{ACE_WT_Lab}, the pump is approximated by a
+static linear model
 
 \begin{equation}
 	K_{\mathrm{pump}} = \frac{\dot{m}}{(U_{\mathrm{in}} - U_0)} 
 \end{equation}
+
 where the gain $K_{\mathrm{pump}}$ and the voltage offset $U_0$ are determined by linear
 regression of the diagram, given in the laboratory script \cite{ACE_WT_Lab}, depicted in figure \ref{fig:pumpcurve}.
 
 \begin{figure}[H]
 	\centering 
 	\includegraphics[height=0.4\textheight]{img/pump_curve.pdf}
-	\caption[Diagram of the linear pump relationship]{Diagram of the linear pump relationship given the laboratory script  \cite{ACE_WT_Lab}}
-	\label{fig:pumpcurve}
+	%\caption[Diagram of the linear pump relationship]{Diagram of the linear pump relationship given the laboratory script  \cite{ACE_WT_Lab}}
+	\caption{Pump characteristic curve and linear fit \cite{ACE_WT_Lab}}
+	\label{fig:pumpcurve}  
 \end{figure}
 
-The linear regression of the pump diagram in \ref{fig:pumpcurve} returns following values for the corresponding parameters: $K_{\mathrm{pump}} = \qty{0.0167}{\kilogram\per\second\per\volt}$ and $U_0 = \qty{0.25}{\volt}$
+%The linear regression of the pump diagram in \ref{fig:pumpcurve} returns following values for the 
+%corresponding parameters: $K_{\mathrm{pump}} = \qty{0.0167}{\kilogram\per\second\per\volt}$ 
+%and $U_0 = \qty{0.25}{\volt}$
 
-\subsection{Water tank parameter}
-The hydraulic outflow behaviour of the reservoirs is characterized by 
-an effective flow coefficient, which is identified experimentally using 
-steady-state measurements. System operation is constrained by the 
-maximum admissible pump voltage and by the physical limits of the 
-reservoir heights. $a_{1}$ can be calculated by:
+Linear regression yields $K_{\mathrm{pump}} = \qty{0.0167}{\kilogram\per\second\per\volt}$ and
+$U_0 = \qty{0.25}{\volt}$.
 
+\subsection{Water tank parameters}
+The hydraulic outflow behaviour of the reservoirs is described by effective flow coefficients
+derived from the nonlinear model. These parameters are identified under steady-state operating
+conditions, where the water levels remain constant and the inflow equals the outflow. System
+operation is constrained by the admissible pump voltage and the physical height limits of the
+reservoirs.
+
+Under steady-state conditions, the outflow coefficient of the upper reservoir is obtained as
 \begin{equation}
-	a_{1} = \frac{b \cdot k_{\text{pump}} (v_{\text{input}} - v_0)}{\sqrt{h_{1}}}
+	a_{1} = \frac{b \, K_{\mathrm{pump}} (U_{\mathrm{in}} - U_0)}{\sqrt{h_{1}}},
+\end{equation}
+with
+\begin{equation}
+	b = \frac{1}{\rho A_t}
+	= \frac{1}{\qty{1000}{kg/m^3} \times \qty{50e-4}{m^2}}
+	= \qty{0.2}{\meter\per\kilogram}.
+\end{equation}
+Evaluating this expression using multiple steady-state measurements yields
+\begin{equation}
+	a_{1} = \qty{0.0574}{\meter^{1/2}\per\second}.
 \end{equation}
 
-where $b$ is:
-
+The outflow coefficient of the lower reservoir follows from the steady-state relation between
+both tank levels,
 \begin{equation}
-	b = \frac{1}{\rho A_t} = \frac{1}{\qty{1000}{kg/m^3} \times \qty{50e-4}{m^2}} = \qty{0.2}{\meter\per\kilogram}
+	a_{2} = a_{1} \frac{\sqrt{h_{1}}}{\sqrt{h_{2}}},
+\end{equation}
+resulting in
+\begin{equation}
+	a_{2} = \qty{0.0524}{\meter^{1/2}\per\second}.
 \end{equation}
 
-and $v_{\text{input}}$ and $h_{1}$ are vectors, therefore the mean has to be taken. Resulting in:
 
-\begin{equation}
-	a_{1, \text{final}} = \text{mean}(a_{1}) = \qty{0.0574}{m^{1/2}/s}
-\end{equation}
+\subsection{Sensor parameters}
+Water levels in the reservoirs are measured using pressure sensors. Owing to the proportional
+relation between hydrostatic pressure and water column height, the sensor behaviour is modeled
+as a linear static mapping between output voltage and water level.
 
-$a_{2}$ can be calculated by:
-
-\begin{equation}
-	a_{2} = a_{1} \cdot \frac{\sqrt{h_{1}}}{\sqrt{h_{2}}}
-\end{equation}
-
-where $h_{1}$ and $h_{2}$ are vectors, therefore the mean has to be taken. Resulting in:
-
-\begin{equation}
-	a_{2, \text{final}} = \text{mean}(a_{2}) = \qty{0.0524}{m^{1/2}/s}
-\end{equation}
-
-\section{Sensor calibration}
-The water level in each reservoir is measured by a pressure sensor. Since hydrostatic pressure
-is proportional to the water column height, a linear sensor model is assumed. Calibration is
-performed by recording the sensor output voltage at known water heights as depicted in figure \ref{fig:sensorcal} and identifying the
-corresponding gain and offset parameters using linear regression.
+Sensor gain and voltage offset are identified from steady-state measurements by linear
+regression of the calibration data shown in Figure~\ref{fig:sensorcal}.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.4\textheight]{img/sensor2_calibration.pdf}
-	\caption[Diagram to determine sensor gain and offset]{Diagram of the linear fit of the measurements to determine the sensor gain and offset}
+	\caption{Pressure sensor characteristic and linear fit}
 	\label{fig:sensorcal}
 \end{figure}
 
-The linear regression of calibration of the sensor of the second water tank, which is depicted in diagram \ref{fig:sensorcal} returns following values for the corresponding parameters: $K_{\text{sens}} = \qty{0.1394}{\meter\per\volt}$ and $U_{0, \text{sens}} = \qty{2.0866}{\volt}$
-
+For the pressure sensor of the second reservoir, the identified parameters are
+$K_{\text{sens}} = \qty{0.1394}{\meter\per\volt}$ and
+$U_{0,\text{sens}} = \qty{2.0866}{\volt}$.
