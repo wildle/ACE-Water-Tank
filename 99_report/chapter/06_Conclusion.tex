@@ -1,23 +1,20 @@
-\chapter{Conclusion and Outlook}
+\chapter{Conclusion}
 \label{chapter:Conclusion}
 \enlargethispage{3.5\baselineskip}
 
-This laboratory investigated the control of a nonlinear two-tank hydraulic system with the
-objective of regulating the water level of the lower reservoir and enabling smooth level
-transitions. A nonlinear model of the system was derived and linearized around a defined
-operating point, providing the basis for controller design. Using identified system parameters,
-a combined feedback and flatness-based feed-forward control structure was implemented and
-evaluated in simulation and on the real laboratory setup.
+This laboratory investigated the control of a nonlinear two-tank hydraulic system with the goal
+of regulating the water level of the lower reservoir while enabling smooth level transitions.
+A nonlinear model of the hydraulic dynamics was derived and linearized around a defined
+operating point, forming the basis for controller design. System parameters were identified
+experimentally and used consistently for simulation and real-time implementation.
 
-Simulation results demonstrated accurate and smooth trajectory tracking under idealized
-conditions, while experiments on the physical system confirmed the feasibility of the control
-concept. Deviations between simulation and experiment were primarily caused by measurement
-noise, actuator saturation and unmodeled hydraulic dynamics. Nevertheless, the overall system
-response remained stable and smooth, indicating that the chosen modeling and control approach
-is well suited for the considered application.
+Simulation results demonstrated smooth and accurate trajectory tracking under idealized model
+conditions. When applied to the physical laboratory setup, the control strategy remained stable
+and achieved smooth level transitions, confirming the practical feasibility of the combined
+feedback and flatness-based feed-forward approach. Differences between simulation and
+experiment were observed in the form of small tracking deviations and steady-state offsets.
 
-Future work may focus on improving tracking performance under non-ideal conditions. Possible
-extensions include gain scheduling to account for varying operating points, the application of
-nonlinear control strategies to better exploit the system dynamics and refined parameter
-identification to reduce model mismatch. Additional improvements could be achieved through
-enhanced sensor filtering and more accurate modeling of actuator dynamics.
+These deviations were primarily caused by measurement noise, actuator saturation and
+unmodeled hydraulic effects that are not fully captured by the simplified model. Despite these
+limitations, the control concept proved robust against practical non-idealities and fulfilled
+the control objectives defined for the laboratory experiment.
