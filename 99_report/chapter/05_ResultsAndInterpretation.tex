@@ -2,43 +2,45 @@
 \label{chapter:ResultsAndInterpretation}
 \enlargethispage{3.5\baselineskip}
 
-!!! Text ändern !!!
+Figure~\ref{fig:simtrans} shows the simulated height response of the water tank system using the
+nonlinear model and the parameters identified in Chapters~2 and~3. A smooth polynomial
+reference trajectory is applied to generate transitions between two operating levels of the
+lower reservoir. Both upward and downward transitions are obtained by adjusting the boundary
+conditions of the trajectory.
 
-Figure~\ref{fig:simtrans} shows the simulated height response of the Ball-in-Tube system using the
-nonlinear model and the parameters identified in Chapters~2 and~3. A seventh-order polynomial
-trajectory is used to generate smooth transitions between the lower height of
-\qty{0.1}{\meter} and the upper height of \qty{0.4}{\meter}. The downward motion is obtained by
-reversing the boundary conditions of the trajectory.
+The simulated water level closely follows the reference trajectory throughout the transition.
+A smooth response without overshoot is observed, while only small deviations occur due to the
+injected measurement noise. Under these idealized conditions, the combined feedback controller
+and flatness-based feed-forward achieve accurate trajectory tracking. The simulation results
+therefore provide a suitable reference for evaluating the control strategy on the real
+laboratory system.
 
-The simulated height closely follows the reference trajectory during both the upward and downward
-transitions. The response is smooth and does not exhibit overshoot, while only minor deviations
-occur due to the injected measurement noise. Overall, the results indicate that the PID controller
-and the flatness-based feed-forward provide satisfactory tracking performance in simulation.
-These results serve as a reference for evaluating the behavior of the control strategy on the real
-system.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/wt_sim_traj.pdf}
-	\caption[Transition in the Simulation]{Transition from \qty{0.1}{\meter} to \qty{0.4}{\meter} using the Simulink-Simulation and the non-linear model of the system}
+	\caption{Simulated water level response of the lower reservoir for a reference trajectory transition}
 	\label{fig:simtrans}
 \end{figure}
-Figure~\ref{fig:realtrans} shows the measured height response of the Ball-in-Tube system for the
-same reference trajectory used in the simulation. In contrast to the idealized simulation result,
-the real system exhibits small tracking deviations during the transition phases and a slight
-steady-state offset during the plateau.
 
-The upward and downward motions remain smooth, indicating that the trajectory planning and
-feed-forward approach are effective also on the real hardware. However, measurement noise,
-actuator limitations, and unmodeled dynamics lead to a reduced tracking accuracy compared to
-the simulation. In particular, the finite fan dynamics and input saturation influence the transient
-response.
+Figure~\ref{fig:realtrans} presents the measured height response of the water tank system for the
+same reference trajectory applied in simulation. In contrast to the idealized simulation result,
+the real system exhibits small tracking deviations during the transition phases and minor
+steady-state offsets.
 
-Overall, the real-system results confirm the validity of the control concept derived in simulation,
-while highlighting the impact of practical non-idealities that are not fully captured by the model.
+Despite these deviations, the overall response remains smooth, demonstrating that the
+trajectory planning and feed-forward approach are effective also on the real hardware.
+Measurement noise, actuator saturation and unmodeled hydraulic dynamics contribute to the
+reduced tracking accuracy compared to the simulation. In particular, pump limitations and
+model mismatches influence the transient behavior during rapid level changes.
+
+Overall, the experimental results confirm the validity of the control concept developed in
+simulation, while highlighting the impact of practical non-idealities inherent to the physical
+system.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{img/wt_realsystem_traj.pdf}
-	\caption[3D-Modell einer Offline-Simulation]{3D-Modell einer Offline-Simulation, Bildquelle: Visual Components GmbH}
+	\caption{Measured water level response of the lower reservoir for the same reference trajectory}
 	\label{fig:realtrans}
 \end{figure}
-
