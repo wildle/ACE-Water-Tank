@@ -16,6 +16,7 @@
 \newtoks\Cohort 
 \newtoks\Module
 \newtoks\Lecture
+\newtoks\LabDate
 \newtoks\Lecturer
 \newtoks\Group\Group{nil}
 
@@ -432,6 +433,7 @@ autooneside  = false
             \textbf{Student ID(s)}\phantom{Circus} & \the\StudentID   \\
             \textbf{Supervisor}                    & \the\Supervisor  \\
             \textbf{Cohort}                        & \the\Cohort      \\
+            \textbf{Date of lab}                     & \the\LabDate     \\
             \ifthenelse{\equal{\the\Group}{nil}}{}{
             \textbf{Group}                         & \the\Group       \\
             }
