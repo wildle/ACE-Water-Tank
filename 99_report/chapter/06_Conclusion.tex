@@ -1,11 +1,23 @@
-\chapter{Conclusion}
+\chapter{Conclusion and Outlook}
 \label{chapter:Conclusion}
 \enlargethispage{3.5\baselineskip}
 
-\begin{itemize}
-  \item Summary of achieved objectives
-  \item Key findings from modeling, control design, and simulations
-  \item Evaluation of controller performance and limitations
-  \item Identified challenges and implemented solutions
-  \item Possible improvements and future work
-\end{itemize}
+This laboratory investigated the control of a nonlinear two-tank hydraulic system with the
+objective of regulating the water level of the lower reservoir and enabling smooth level
+transitions. A nonlinear model of the system was derived and linearized around a defined
+operating point, providing the basis for controller design. Using identified system parameters,
+a combined feedback and flatness-based feed-forward control structure was implemented and
+evaluated in simulation and on the real laboratory setup.
+
+Simulation results demonstrated accurate and smooth trajectory tracking under idealized
+conditions, while experiments on the physical system confirmed the feasibility of the control
+concept. Deviations between simulation and experiment were primarily caused by measurement
+noise, actuator saturation and unmodeled hydraulic dynamics. Nevertheless, the overall system
+response remained stable and smooth, indicating that the chosen modeling and control approach
+is well suited for the considered application.
+
+Future work may focus on improving tracking performance under non-ideal conditions. Possible
+extensions include gain scheduling to account for varying operating points, the application of
+nonlinear control strategies to better exploit the system dynamics and refined parameter
+identification to reduce model mismatch. Additional improvements could be achieved through
+enhanced sensor filtering and more accurate modeling of actuator dynamics.
