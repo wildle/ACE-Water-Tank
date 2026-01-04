@@ -17,7 +17,7 @@ considered during parameter identification and control design.
 
 \subsection{Pump parameters}
 The pump provides the inlet mass flow to the upper reservoir and is driven by an input voltage.
-Based on the characteristic curve given in \cite{ACE_WT_Lab}, the pump is approximated by a
+Based on the characteristic relation given in \cite{ACE_WT_Lab}, the pump is approximated by a
 static linear model
 
 \begin{equation}
@@ -25,13 +25,14 @@ static linear model
 \end{equation}
 
 where the gain $K_{\mathrm{pump}}$ and the voltage offset $U_0$ are determined by linear
-regression of the diagram, given in the laboratory script \cite{ACE_WT_Lab}, depicted in figure \ref{fig:pumpcurve}.
+regression of the diagram, given in the laboratory script \cite{ACE_WT_Lab}, depicted in figure \ref{fig:pumpcurve}. Linear regression yields $K_{\mathrm{pump}} = \qty{0.0167}{\kilogram\per\second\per\volt}$ and
+$U_0 = \qty{0.25}{\volt}$.
 
 \begin{figure}[H]
 	\centering 
 	\includegraphics[height=0.4\textheight]{img/pump_curve.pdf}
 	%\caption[Diagram of the linear pump relationship]{Diagram of the linear pump relationship given the laboratory script  \cite{ACE_WT_Lab}}
-	\caption{Pump characteristic curve and linear fit \cite{ACE_WT_Lab}}
+	\caption{Pump characteristic relation and linear fit \cite{ACE_WT_Lab}}
 	\label{fig:pumpcurve}  
 \end{figure}
 
@@ -39,17 +40,14 @@ regression of the diagram, given in the laboratory script \cite{ACE_WT_Lab}, dep
 %corresponding parameters: $K_{\mathrm{pump}} = \qty{0.0167}{\kilogram\per\second\per\volt}$ 
 %and $U_0 = \qty{0.25}{\volt}$
 
-Linear regression yields $K_{\mathrm{pump}} = \qty{0.0167}{\kilogram\per\second\per\volt}$ and
-$U_0 = \qty{0.25}{\volt}$.
+
 
 \subsection{Water tank parameters}
 The hydraulic outflow behaviour of the reservoirs is described by effective flow coefficients
 derived from the nonlinear model. These parameters are identified under steady-state operating
 conditions, where the water levels remain constant and the inflow equals the outflow. System
 operation is constrained by the admissible pump voltage and the physical height limits of the
-reservoirs.
-
-Under steady-state conditions, the outflow coefficient of the upper reservoir is obtained as
+reservoirs. Under steady-state conditions, the outflow coefficient of the upper reservoir is obtained as
 \begin{equation}
 	a_{1} = \frac{b \, K_{\mathrm{pump}} (U_{\mathrm{in}} - U_0)}{\sqrt{h_{1}}},
 \end{equation}
@@ -61,7 +59,7 @@ with
 \end{equation}
 Evaluating this expression using multiple steady-state measurements yields
 \begin{equation}
-	a_{1} = \qty{0.0574}{\meter^{1/2}\per\second}.
+	a_{1} = \qty{0.0574}{\meter\tothe{1/2}\per\second}.
 \end{equation}
 
 The outflow coefficient of the lower reservoir follows from the steady-state relation between
@@ -71,7 +69,7 @@ both tank levels,
 \end{equation}
 resulting in
 \begin{equation}
-	a_{2} = \qty{0.0524}{\meter^{1/2}\per\second}.
+	a_{2} = \qty{0.0524}{\meter\tothe{1/2}\per\second}.
 \end{equation}
 
 
